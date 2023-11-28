@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -27,6 +28,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
 
 
@@ -75,25 +78,33 @@ fun Calculadora(){
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.calculator),
-                    contentDescription = null
+                    contentDescription = null,modifier = Modifier.size(400.dp)
                 )
 
-                Text(text = resultado.toString())
+
             }
-            Row(modifier = Modifier
+            Column(modifier = Modifier.fillMaxWidth().weight(2f)) {
+                Text(text = "Resultado: "+resultado.toString(), textAlign = TextAlign.Center)
+            }
+            Column(modifier = Modifier
                 .fillMaxWidth()
                 .weight(3f)) {
+
                 Button(onClick = { resultado = (numero1.toInt() + numero2.toInt() )},colors = ButtonDefaults.buttonColors(
-                    Color.Green) ) {
+                    Color.Green) ,modifier=Modifier.fillMaxWidth()) {
                     Text(text = "+")
                 }
                 Button(onClick = { resultado = (numero1.toInt() - numero2.toInt() )},colors = ButtonDefaults.buttonColors(
-                    Color.Green) ) {
+                    Color.Green) ,modifier=Modifier.fillMaxWidth()) {
                     Text(text = "-")
                 }
                 Button(onClick = { resultado = (numero1.toInt() * numero2.toInt() )},colors = ButtonDefaults.buttonColors(
-                    Color.Green) ) {
+                    Color.Green) ,modifier=Modifier.fillMaxWidth()) {
                     Text(text = "*")
+                }
+                Button(onClick = { resultado = (numero1.toInt() / numero2.toInt() )},colors = ButtonDefaults.buttonColors(
+                    Color.Green) ,modifier=Modifier.fillMaxWidth()) {
+                    Text(text = "/")
                 }
             }
         }
